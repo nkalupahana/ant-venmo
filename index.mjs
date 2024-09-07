@@ -35,6 +35,7 @@ const page = await browser.newPage();
 await page.goto("https://account.venmo.com/pay")
 
 if (page.url().includes("id.venmo.com")) {
+    await page.waitForSelector("input[type='password']");
     await page.type("input[type='password']", process.env.VENMO_PASSWORD);
     await page.keyboard.press("Enter");
     await page.waitForNavigation();
