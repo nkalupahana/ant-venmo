@@ -56,7 +56,7 @@ await page.evaluate(() => {
 });
 
 // Wait for payment methods to populate
-await page.waitForSelector("#select-destination");
+await page.waitForSelector(".MuiSwitch-root");
 
 // Pay
 await page.evaluate(() => {
