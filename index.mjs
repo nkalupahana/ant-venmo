@@ -31,8 +31,31 @@ const page = await browser.newPage();
 // await page.goto("https://venmo.com/account/sign-in")
 // await delay(120000)
 
+async function loadPage(url, maxRetries = 10) {
+    let retries = 0;
+    
+    while (retries < maxRetries) {
+      try {
+        const response = await page.goto(url, { waitUntil: 'networkidle0' });
+        const status = response.status();
+        if (status !== 200) {
+          console.log(`Received ${status} status code. Retrying...`);
+          retries++;
+          await delay(500);
+        } else {
+          return response; // Successful load
+        }
+      } catch (error) {
+        console.error('Error loading page:', error);
+        retries++;
+      }
+    }
+    
+    throw new Error('Max retries reached. Unable to load page.');
+  }
+
 // Select user to pay
-await page.goto("https://account.venmo.com/pay")
+await loadPage("https://account.venmo.com/pay");
 
 if (page.url().includes("id.venmo.com")) {
     await page.waitForSelector("input[type='password']");
