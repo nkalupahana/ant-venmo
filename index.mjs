@@ -64,7 +64,7 @@ if (page.url().includes("id.venmo.com")) {
     await page.waitForNavigation();
 }
 
-await page.type("#search-input", "@Nicholas-Gebo-2");
+await page.type("#mui-1", "@Nicholas-Gebo-2");
 await (await page.waitForSelector("img[alt='Nicholas-Gebo-2']")).click()
 
 // Set up payment details
