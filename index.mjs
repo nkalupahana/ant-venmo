@@ -36,7 +36,7 @@ async function loadPage(url, maxRetries = 10) {
     
     while (retries < maxRetries) {
       try {
-        const response = await page.goto(url, { waitUntil: 'networkidle0' });
+        const response = await page.goto(url);
         const status = response.status();
         if (status !== 200) {
           console.log(`Received ${status} status code. Retrying...`);
@@ -64,7 +64,8 @@ if (page.url().includes("id.venmo.com")) {
     await page.waitForNavigation();
 }
 
-await page.type("#mui-1", "@Nicholas-Gebo-2");
+await page.waitForSelector("#\\:r1\\:")
+await page.type("#\\:r1\\:", "@Nicholas-Gebo-2");
 await (await page.waitForSelector("img[alt='Nicholas-Gebo-2']")).click()
 
 // Set up payment details
