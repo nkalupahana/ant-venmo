@@ -18,7 +18,7 @@
   "description": "",
   "dependencies": {
     "dotenv": "^16.4.5",
-    "lodash-es": "^4.17.21",
+    "lodash-es": "^4.17.23",
     "puppeteer": "^23.3.0"
   }
 }
